@@ -12,13 +12,27 @@ import org.springframework.web.bind.annotation.RestController;
 //@Controller
 
 //사용자가 요청할 때 응답(Data)을 한다
-@RestController
+@RestController //문자 그 자체를 리턴할 때 사용하는 annotation
 public class HttpControllerTest {
+	
+	private static final String TAG = "HttpControllerTest : ";
+	
+	//localhost:8090/blog/http/lombok
+	@GetMapping("/http/lombok")
+	public String lombokTest() {
+		//Member m = new Member(1, "ssar", "1234", "email");//@AllArgsConstructor로 생성자가 있기 때문에 가능함
+		Member m = Member.builder().username("ssar").password("1234").email("ssar@nate.com").build();
+		System.out.println(TAG + "getter: " + m.getUsername());
+		m.setUsername("cos");
+		System.out.println(TAG + "setter: " + m.getUsername());
+		return "lombok test 완료!";//문자 자체를 리턴
+	}
 
 	//인터넷 브라우저 요청은 무조건 get요청밖에 할 수 없다
 	//http://localhost:8090/http/get (select)
 	@GetMapping("/http/get")
 	public String getTest(Member m) {//?id=1&username=ssar&password=1234&email=ssar@nate.com
+		
 		return "get 요청 : " + m.getId() + ", " + m.getUsername() + ", " + m.getPassword() + ", " + m.getEmail();
 	}
 	//@RequestParam : 1개의 HTTP 요청 파라미터를 받기 위해 사용함 (예)@RequestParam int id

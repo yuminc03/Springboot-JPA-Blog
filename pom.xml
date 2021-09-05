@@ -27,10 +27,11 @@
 	</dependency>
 	 -->
 	
-	<!-- JSP 템플릿 엔진 -->
+	<!-- JSP 템플릿 엔진 (Spring boot가 기본적으로 JSP 지원을 안함. jsp를 인식하기 위한 사전설정)-->
 	<dependency>
   		<groupId>org.apache.tomcat.embed</groupId>
   		<artifactId>tomcat-embed-jasper</artifactId>
+  		<version>9.0.50</version>
 	</dependency>
 
 	<!-- JSTL -->
